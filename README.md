@@ -15,8 +15,8 @@
 - 发送卡券等
 
 ### **效果图如下**
-![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/1.png)
-![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/2.png)
+![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/11.png)
+![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/22.png)
 ------------
 
 ### **如何使用**
