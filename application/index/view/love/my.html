@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1,user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <title>我的表白</title>
+    {css href="/public/love/css/mui.min.css" /}
+    {css href="/public/love/css/iconfont.css" /}
+    {css href="/public/love/css/index.css" /}
+    <style>
+        .mui-bar a {
+  color: #fa989d;
+}
+
+.content {
+  padding-bottom: 50px;
+}
+
+.mui-content > .mui-table-view:first-child {
+  margin-top: 5px;
+}
+
+.mui-table-view {
+  position: relative;
+  background-color: transparent;
+}
+
+.mui-table-view li {
+  position: relative;
+}
+
+.mui-table-view:before,
+.mui-table-view:after,
+.mui-table-view-cell:after {
+  background-color: transparent;
+}
+
+.mui-table-view li:nth-child(even) .mui-card {
+  margin: 0 68px 0 0;
+}
+
+.mui-table-view li:nth-child(even) .user-img {
+  left: auto;
+  right: 15px;
+}
+
+.mui-table-view li:nth-child(even) .user-img:after {
+  left: -16px;
+  right: auto;
+  border-left-color: #fff;
+  border-right-color: transparent;
+}
+
+.content h3 {
+  font-size: 15px;
+  font-weight: normal;
+}
+
+.content h3 span {
+  color: #fa989d;
+}
+
+.love-info {
+  font-size: 14px;
+}
+
+.love-info i {
+  font-style: normal;
+}
+
+.love-user img {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+
+.mui-card {
+  position: relative;
+  margin: 0 0 0 68px;
+  overflow: auto;
+}
+
+.user-img {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  width: 52px;
+  height: 52px;
+  z-index: 5;
+  line-height: 40px;
+  text-align: center;
+  border-radius: 50%;
+  background-color: #fa989d ;
+}
+
+.user-img:after {
+  position: absolute;
+  content: '';
+  top: 20px;
+  right: -16px;
+  width: 0;
+  height: 0;
+  border: 10px solid transparent;
+  border-right-color: white;
+}
+
+.user-img img {
+  margin-top: 6px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+}
+
+.love-ok {
+  font-size: 40px;
+  color: #fa004b;
+}
+
+
+    </style>
+</head>
+
+<body>
+    <header class="mui-bar mui-bar-nav">
+        <!--<a class=" mui-icon mui-icon-left-nav mui-pull-left" href="../index/index.html"></a>-->
+        <h1 class="mui-title">我的表白</h1>
+    </header>
+    <div class="mui-content content" id="content">
+        <ul class="mui-table-view">
+            {volist name="list" id="vo"}
+            <li class="mui-table-view-cell">
+                {if condition="$vo['headimage'] eq ''"}
+                    <img class="mui-media-object mui-pull-left" src="/public/love/images/yz.jpg">
+                {else/}
+                    <img class="mui-media-object mui-pull-left" src="{$vo.headimage}">
+                {/if}
+
+                <div class="mui-card">
+                    <div class="mui-card-header">
+                        <h3 class="mui-ellipsis">TO <span>{$vo.toname}</span></h3><span class="mui-icon mui-icon mui-icon-trash" style="color:red;"></span></div>
+                    <div class="mui-card-content">
+                        <div class="mui-card-content-inner mui-text-justify">
+                            {$vo.content}
+                        </div>
+                    </div>
+                    <div class="mui-card-footer">
+                        
+                        {if condition="$vo['is_ok'] eq 0"}
+                        <!--表白中显示-->
+                        <span class="mui-badge mui-badge-warning state">表白中</span>
+                        {else /}
+                        <span class="mui-badge mui-badge-success state">表白成功</span>
+                        {/if}
+
+
+                        <span class="mui-pull-right">{$vo.time}</span>
+                    </div>
+                </div>
+            </li>
+            {/volist}
+        </ul>
+        <!-- <div class="noInfo"">
+            <img src="/public/love/images/go_love.png" width="50%" alt="">
+        </div> -->
+    </div>
+    <nav class="mui-bar mui-bar-tab">
+        <a class="mui-tab-item" href="{:url('index')}">
+            <span class="mui-icon iconfont icon-icon-yxj-community-piazza"></span>
+            <span class="mui-tab-label">表白广场</span>
+        </a>
+        <a class="mui-tab-item add-love" href="{:url('send')}">
+            <span class="mui-icon iconfont icon-icon1460188493695"></span>
+        </a>
+        <a class="mui-tab-item mui-active" href="#">
+            <span class="mui-icon iconfont icon-4"></span>
+            <span class="mui-tab-label">我的表白</span>
+        </a>
+    </nav>
+</body>
+</html>

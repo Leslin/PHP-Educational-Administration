@@ -1,0 +1,64 @@
+{empty name="list"}
+
+{else /}
+{volist name="list" id="vo"}
+    <li class="mui-table-view-cell">
+
+    {if condition="$vo['is_ok'] eq 0"}
+    <!--表白成功显示-->
+    
+    <div class="love-state wait">
+        <img src="/public/love/images/no_heart.png" alt="">
+    </div>
+    {else /}
+    <!--表白中显示-->
+    <div class="love-state"">
+        <img src="/public/love/images/heart.png" alt="">
+    </div>
+    {/if}
+    <div class="mui-card">
+        <div class="mui-card-header mui-media">
+            {if condition="$vo['headimage'] eq ''"}
+                <img class="mui-media-object mui-pull-left" src="/public/love/images/yz.jpg">
+            {else/}
+               {if condition="$vo['is_hide'] eq 1"}
+                    <img class="mui-media-object mui-pull-left" src="/public/love/images/yz.jpg">
+               {else/}
+                    <img class="mui-media-object mui-pull-left" src="{$vo.headimage}">
+               {/if}
+            {/if}
+            
+            {if condition="$vo['is_hide'] eq 1"}
+            <div class="mui-media-body mui-ellipsis">
+                <span>匿名表白</span>
+                <p class="mui-ellipsis"> {$vo.time|} &nbsp;&nbsp;</p>
+            </div>
+            {else/}
+            <div class="mui-media-body mui-ellipsis">
+                <span>{$vo.name}</span>
+                <p class="mui-ellipsis"> {$vo.time|} &nbsp;&nbsp;{$vo.class}</p>
+            </div>
+            {/if}
+
+
+            {if condition="$vo['is_ok'] eq 0"}
+            <!--表白中显示-->
+            <span class="mui-badge mui-badge-warning state">表白中</span>
+            {else /}
+            <span class="mui-badge mui-badge-success state">表白成功</span>
+            {/if}
+        </div>
+        <div class="mui-card-content">
+            <div class="mui-card-content-inner mui-text-justify">
+                {$vo.content}
+            </div>
+        </div>
+        <div class="mui-card-footer">
+            <p class="mui-text-right mui-ellipsis love-user">
+                <span class="iconfont icon-zhifeiji"></span>{$vo.toname}
+            </p>
+        </div>
+    </div>
+    </li>
+{/volist}
+{/empty}
