@@ -30,6 +30,7 @@ www  WEB部署目录（或者子目录）
 |  |  |     |-Server.php  对接微信服务器文件
 |  |  |     |-Wechat.php  封装微信接口文件
 |  |  |     |-Cet.php     四六级绑定 
+|  |  |     |-Center.php  个人中心
 │  │  ├─model           模型目录
 |  |      ├─model     
 │  │  ├─view            视图目录
