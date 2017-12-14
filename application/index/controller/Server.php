@@ -34,9 +34,8 @@ class Server extends Controller
 				
 				switch (trim($type['Content'])) {
 
-					case '成绩1':
+					case '成绩':
 						$this->getScore($type['FromUserName'],'bxq');
-						$this->sendRed($type['FromUserName']);  //发送红包
 						break;
 					case '全部成绩1':
 						$this->getScore($type['FromUserName'],'all');
@@ -72,12 +71,13 @@ class Server extends Controller
 		$Server = Factory::getInstance(\app\index\model\Server::class);
 		$userJwid = $Server->getJwid($openid);
 		if(empty($userJwid)){
-			$this->Wechat->news(self::newsTemplate('绑定学号','点击绑定学号密码查询升级',''))->reply();
+			$this->Wechat->news(self::newsTemplate('绑定学号','点击绑定学号密码查询成绩','http://cd.cdhand.com/public/index.php/index/bind/index'))->reply();
 			exit();
 		}else{
 			$Score = Factory::getInstance(\app\index\controller\Score::class);
 			$result = $Score->getScore($type,$userJwid['jwid'],$userJwid['jwpwd']);
-			$this->Wechat->news(self::newsTemplate('你的本学期成绩如下【点击查看所有成绩】',$result."\n".'成绩更新时间:'.date("Y-m-d H:i:s",time())."\n".'回复【全部成绩】查看所有成绩'."\n".'回复【重置】重新绑定',''))->reply();
+			$this->Wechat->news(self::newsTemplate('你的本学期成绩如下【点击查看所有成绩】',$result."\n".'成绩更新时间:'.date("Y-m-d H:i:s",time())."\n".'回复【全部成绩】查看所有成绩'."\n".'回复【重置】重新绑定','http://cd.cdhand.com/jf/api.php/All'))->reply();
+			$this->sendRed($userJwid['openid']);  //发送红包
 		}
 	}
 
@@ -91,19 +91,32 @@ class Server extends Controller
 			$Server = Factory::getInstance(\app\index\model\Server::class);
 			$userJwid = $Server->getJwid($openid);
 			if(empty($userJwid)){     //学号为空
-				return false;
+				$this->Wechat->news(self::newsTemplate('绑定学号','点击绑定学号密码查询成绩','http://cd.cdhand.com/public/index.php/index/bind/index'))->reply();
+				exit();
 			}
 
-			$red = Factory::getInstance(\app\index\controller\Red::class);
-		    $res = $red->RedBag($openid,120,'感谢一直对长大校园助手的关注，小小红包，表示心意！');
-		    //发送成功
-		    if($res['return_code'] == 'SUCCESS' && $res['result_code'] == 'SUCCESS' && !empty($res['send_listid'])){
-				$Server->redLog($res);
-				return true;
-		    }
+			$isCheckRed = $Server->getRedLog($openid,$userJwid['jwid']);
+
+			if($isCheckRed){   //满足发红包要求
+				$year = substr($userJwid['jwid'], 0,4);//取得学号
+				$ischeck = self::get_rand($year);
+				if($ischeck){
+					$red = Factory::getInstance(\app\index\controller\Red::class);
+				    $res = $red->RedBag($openid,rand(100,120),'感谢一直对长大校园助手的关注，小小红包，表示心意！');
+				    //发送成功
+				    if($res['return_code'] == 'SUCCESS' && $res['result_code'] == 'SUCCESS' && !empty($res['send_listid'])){
+						$Server->redLog($res);
+				    }
+				}else{
+					Template::sendCustomMessage($openid,'很遗憾，本次查询未获得现金红包。请再次查询成绩，领取现金红包哟');
+				}
+				
+			}else{
+				//Template::sendCustomMessage($openid,'红包领取失败,你已经领过红包或学号已被他人领取红包');
+			}
 
 		}else{
-			return true;
+			
 		}
 	}
 
@@ -128,5 +141,42 @@ class Server extends Controller
 	{
 		$Server = Factory::getInstance(\app\index\model\Server::class);
 		$Server->serverLog($data);
+	}
+
+	/**
+	 * 是否给改用户发送红包
+	 */
+	public function isSendRed($jwid = '')
+	{
+		$year = substr($jwid, 0,4);//取得学号
+
+	}
+
+	public static function get_rand($jwid = '') {
+		
+		if($jwid == 2017 ){  //2017级的直接送
+	    	return true;
+	    }
+		$proArr = array('2016'=>50,'2015'=>20,'2014'=>10,'2013'=>10,'2012'=>5,'2011'=>5);
+	    $result = ''; 
+	    //概率数组的总概率精度
+	    $proSum = array_sum($proArr); 
+
+	    //概率数组循环
+	    foreach ($proArr as $key => $proCur) { 
+	        $randNum = mt_rand(1, $proSum); 
+	        if ($randNum <= $proCur) { 
+	            $result = $key; 
+	            break; 
+	        } else { 
+	            $proSum -= $proCur; 
+	        } 
+	    } 
+	    unset ($proArr);
+	    if($jwid == $result){
+	    	return true;
+	    }else{
+	    	return false;
+	    }
 	}
 }
