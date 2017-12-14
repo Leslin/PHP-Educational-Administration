@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>长大校园助手</title>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+{include file='center/head' /}
+<style>
+  
+  .demos-header {
+    padding: 15px 0;
+    background-color: black;
+}
+ .headimgurl{
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  text-align: center;
+  margin: 0 auto;
+  display: block;
+ }
+ .demos-title {
+    text-align: center;
+    font-size: 18px;
+    color: #ffffff;
+    font-weight: 400;
+    margin: 0 15%;
+    margin-top: 10px;
+}
+</style>
+  </head>
+
+  <body ontouchstart>
+
+    <header class='demos-header'>
+          <img src="{$userinfo.headimgurl}" class="headimgurl"  alt="">
+          <h3 class="demos-title">李方林</h3>
+          <p class="demos-sub-title">计科5111</p>
+
+    </header>
+
+    <div class="weui-grids">
+      <a href="buttons.html" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+          <img src="/public/center/icon/报告查询.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          成绩
+        </p>
+      </a>
+      <a href="cell.html" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+          <img src="/public/center/icon/报告查询.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          List
+        </p>
+      </a>
+      <a href="form.html" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+          <img src="/public/center/icon/报告查询.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          Form
+        </p>
+      </a>
+      <a href="flex.html" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+          <img src="/public/center/icon/报告查询.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          Flex
+        </p>
+      </a>
+      <a href="toast.html" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+          <img src="/public/center/icon/报告查询.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          Toast
+        </p>
+      </a>
+      <a href="dialog.html" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+          <img src="/public/center/icon/报告查询.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          Dialog
+        </p>
+      </a>
+    </div>
+
+   {include file='center/foot' /}
+  </body>
+
+</html>
