@@ -28,7 +28,8 @@ www  WEB部署目录（或者子目录）
 |  |  |     |-Red.php     微信红包 
 |  |        ├─Score.php   获取成绩文件
 |  |  |     |-Server.php  对接微信服务器文件
-|  |  |     |-Wechat.php  封装微信接口文件 
+|  |  |     |-Wechat.php  封装微信接口文件
+|  |  |     |-Cet.php     四六级绑定 
 │  │  ├─model           模型目录
 |  |      ├─model     
 │  │  ├─view            视图目录
