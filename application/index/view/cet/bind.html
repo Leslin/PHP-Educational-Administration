@@ -1,0 +1,165 @@
+<html lang="zh-cmn-Hans">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=0">
+    <title>四六级准考证绑定</title>
+    <link href="https://cdn.bootcss.com/weui/1.1.2/style/weui.min.css" rel="stylesheet">
+    <script src="https://cdn.bootcss.com/jquery/2.1.4/jquery.js"></script>
+	{css href="/public/layer/need/layer.css" /}
+	{js href="/public/layer/layer.js" /}
+</head>
+<body>
+<div class="weui-cells__title">绑定四六级准考证号，成绩发布一键查询成绩<br/>我们会在成绩公布当天向你推送成绩</div>
+<div id="first" style="display: block">
+    <div class="weui-cells weui-cells_form">
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">姓名</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="text" name='name' value="{$userinfo.name}" id="name" placeholder="请输入您的姓名">
+            </div>
+        </div>
+        <div class="weui-cell">
+            <div class="weui-cell__hd"><label class="weui-label">准考证号</label></div>
+            <div class="weui-cell__bd">
+                <input class="weui-input" type="tel" name="cetid" value="{$userinfo.cetid}" id="cetid" placeholder="请输入准考证号">
+            </div>
+            
+        </div>
+		<div class="weui-cells weui-cells_radio" style="margin-top: 0em;">
+		    <label class="weui-cell weui-check__label" for="x11">
+		        <div class="weui-cell__bd">
+		            <p>英语四级</p>
+		        </div>
+		        <div class="weui-cell__ft">
+		            <input type="radio" name="type" class="weui-check" value="4" id="x11" {if condition = "$userinfo.type eq 4"} checked="checked" {else/}{/if}>
+		            <span class="weui-icon-checked"></span>
+		        </div>
+		    </label>
+		    <label class="weui-cell weui-check__label" for="x12">
+		        <div class="weui-cell__bd">
+		            <p>英语六级</p>
+		        </div>
+		        <div class="weui-cell__ft">
+		            <input type="radio" name="type" class="weui-check" value="6" id="x12" {if condition = "$userinfo.type eq 6"} checked="checked" {else/}{/if}>
+		            <span class="weui-icon-checked"></span>
+		        </div>
+		    </label>
+		</div>
+		
+	    <div class="weui-cell weui-cell_switch">
+	        <div class="weui-cell__bd">是否自动推送四六级成绩</div>
+	        <div class="weui-cell__ft">
+	            <input class="weui-switch" type="checkbox" checked="checked">
+	        </div>
+	    </div>
+    </div>
+    <div class="weui-cells__title">自动推送：开启后，成绩公布系统第一时间把查询成绩通过长大校园助手推送给你。</div>
+    <div class="weui-btn-area">
+        <a class="weui-btn weui-btn_primary" href="javascript:" id="showTooltips">绑定</a>
+    </div>
+</div>
+
+</body>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+ <script>
+	wx.config({
+      debug:false,
+      appId: "{$getSignPackage['appId']}",
+      timestamp: "{$getSignPackage['timestamp']}",
+      nonceStr: "{$getSignPackage['nonceStr']}",
+      signature: "{$getSignPackage['signature']}",
+      jsApiList: [
+      
+        'closeWindow',
+        'onMenuShareTimeline',
+        'onMenuShareAppMessage'
+      ]
+    });
+    wx.ready(function() {
+
+    });
+
+    function closeWindow() {
+       wx.closeWindow();
+    }
+
+    wx.error(function(res) {
+        alert(res.errMsg);
+    });
+	function msg(msg){
+		
+		layer.open({
+		    content: msg
+		    ,skin: 'msg'
+		    ,time: 2 //2秒后自动关闭
+		  });
+	
+	}
+
+	function loading () {
+		layer.open({
+		    type: 2
+		    ,content: '加载中'
+		  });
+	}
+
+	function closeAll () {
+			
+		setTimeout(function(){
+
+			layer.closeAll()
+						
+		}, 2000 );
+	}
+	$("#showTooltips").click(function(){
+		
+		if($("#name").val()==''){
+			msg('请输入姓名');
+			$("#name").focus();
+			return false;
+			}
+		else if($("#cetid").val()==''){
+			msg('请输入准考证号');
+			$("#cetid").focus();
+			return false;
+		}
+		var name=$("#name").val();
+		var cetid=$("#cetid").val();
+		var type = $("input[name='type']:checked").val();
+		if(type=='' ||type == null){
+			msg('请选择绑定类型');
+			return false;
+			}
+		loading();
+		$.ajax({
+				type: 'post',
+				url: '{:url('bind')}',
+				data: {
+					name:name,
+					cetid:cetid,
+					type:type
+				}, success: function (res) {
+					
+					if(res.status == 1){
+						msg(res.msg);
+						closeAll();
+						setTimeout(function(){
+							closeWindow();
+						}, 2000 );	
+
+					}else{
+						msg(res.msg);
+						closeAll();
+					}	
+					
+				}, error: function (res) {
+					
+					msg('网络错误,稍后再试！');
+					closeAll();
+				   
+				}
+        });
+		
+	})
+  
+  </script>
