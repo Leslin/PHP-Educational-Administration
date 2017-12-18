@@ -42,6 +42,16 @@ class Love extends Base
 		return $this->fetch();
 	}
 
+	public function delete()
+	{
+		$delete = Db::name('love_list')->where('id',input('id'))->delete();
+		if($delete != 0){
+			return ['status'=>1,'msg'=>'删除成功'];
+		}else{
+			return ['status'=>0,'msg'=>'删除失败'];
+		}
+	}
+
 	//Cache::set(self::$prefix.session('openid'),$userInfo); //获取用户信息存入redis中
 	public function sendlove()
 	{

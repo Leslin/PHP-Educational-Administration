@@ -142,7 +142,8 @@
 
                 <div class="mui-card">
                     <div class="mui-card-header">
-                        <h3 class="mui-ellipsis">TO <span>{$vo.toname}</span></h3><span class="mui-icon mui-icon mui-icon-trash" style="color:red;"></span></div>
+                        <h3 class="mui-ellipsis">TO <span>{$vo.toname}</span></h3>
+                        <span class="mui-icon mui-icon mui-icon-trash" onclick ="deletemy({$vo.id});" style="color:red;"></span></div>
                     <div class="mui-card-content">
                         <div class="mui-card-content-inner mui-text-justify">
                             {$vo.content}
@@ -182,4 +183,36 @@
         </a>
     </nav>
 </body>
+<script src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+<script>
+  function deletemy(id) {
+    $.ajax({
+            type: 'POST',
+            url: '{:url('delete')}',
+            data: {
+                
+                id:id,
+            },
+            success: function(result){
+
+                if(result.status == 1){
+                    alert(result.msg);
+                    setTimeout(function(){
+                      window.location.href = 'http://cd.cdhand.com/public/index.php/index/love/my'
+                    }, 1000 );
+                    
+                }else{
+                    alert(result.msg);
+                     setTimeout(function(){
+                      window.location.href = 'http://cd.cdhand.com/public/index.php/index/love/my'
+                    }, 1000 );
+                }
+            },
+            error: function(xhr, type){
+                alert('系统错误');
+                // 即使加载出错，也得重置
+            }
+        });
+  }
+</script>
 </html>
