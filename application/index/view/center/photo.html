@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>我的登记照</title>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+{include file='center/head' /}
+<style>
+	img{
+
+	}
+</style>
+	</head>
+
+	<body>
+	<div style="text-align: center;margin-top: 60px;">
+		<img src="http://jwc2.yangtzeu.edu.cn:8080/photo/{php} echo substr($user['jwid'],0,4);{/php}/{$user.jwid}.JPG" alt="">
+	</div>
+	
+	</body>
+	{include file='center/foot' /}
+	</html>

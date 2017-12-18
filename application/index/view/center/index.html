@@ -36,58 +36,82 @@
 
     <header class='demos-header'>
           <img src="{$userinfo.headimgurl}" class="headimgurl"  alt="">
-          <h3 class="demos-title">李方林</h3>
-          <p class="demos-sub-title">计科5111</p>
+          <h3 class="demos-title">{$user.realname}</h3>
+          <p class="demos-sub-title">{$user.class}</p>
 
     </header>
 
     <div class="weui-grids">
-      <a href="buttons.html" class="weui-grid js_grid">
+      <a href="{:url('bxq_score')}" class="weui-grid js_grid">
         <div class="weui-grid__icon">
           <img src="/public/center/icon/报告查询.png" alt="">
         </div>
         <p class="weui-grid__label">
-          成绩
+          本学期成绩
         </p>
       </a>
-      <a href="cell.html" class="weui-grid js_grid">
+      <a href="{:url('all_score')}" class="weui-grid js_grid">
         <div class="weui-grid__icon">
-          <img src="/public/center/icon/报告查询.png" alt="">
+          <img src="/public/center/icon/成绩.png" alt="">
         </div>
         <p class="weui-grid__label">
-          List
+          全部成绩
         </p>
       </a>
-      <a href="form.html" class="weui-grid js_grid">
+      <a href="#" class="weui-grid js_grid">
         <div class="weui-grid__icon">
-          <img src="/public/center/icon/报告查询.png" alt="">
+          <img src="/public/center/icon/绩点.png" alt="">
         </div>
         <p class="weui-grid__label">
-          Form
+          绩点
         </p>
       </a>
-      <a href="flex.html" class="weui-grid js_grid">
+      <a href="#" class="weui-grid js_grid">
         <div class="weui-grid__icon">
           <img src="/public/center/icon/报告查询.png" alt="">
         </div>
         <p class="weui-grid__label">
-          Flex
+          选修查询
         </p>
       </a>
-      <a href="toast.html" class="weui-grid js_grid">
+      <a href="{:url('photo')}" class="weui-grid js_grid">
         <div class="weui-grid__icon">
-          <img src="/public/center/icon/报告查询.png" alt="">
+          <img src="/public/center/icon/登记照.png" alt="">
         </div>
         <p class="weui-grid__label">
-          Toast
+          查看登记照
         </p>
       </a>
-      <a href="dialog.html" class="weui-grid js_grid">
+      <a href="{:url('cet/bind')}" class="weui-grid js_grid">
         <div class="weui-grid__icon">
-          <img src="/public/center/icon/报告查询.png" alt="">
+          <img src="/public/center/icon/四六级.png" alt="">
         </div>
         <p class="weui-grid__label">
-          Dialog
+          四六级查询
+        </p>
+      </a>
+      <a href="{:url('love/index')}" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+          <img src="/public/center/icon/消息.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          表白墙
+        </p>
+      </a>
+      <a href="https://mp.weixin.qq.com/s?__biz=MzI1ODk2MzI3Nw==&mid=100000008&idx=1&sn=25668dec6643e1e4fa358b8b1fdfaed0&chksm=6a01632a5d76ea3c66230f00590c1289cbd8d9d227986778db4696bebea7283dafcee6ef8bad" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+          <img src="/public/center/icon/校历.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          校历
+        </p>
+      </a>
+      <a href="#" class="weui-grid js_grid">
+        <div class="weui-grid__icon">
+          <img src="/public/center/icon/我的.png" alt="">
+        </div>
+        <p class="weui-grid__label">
+          个人中心
         </p>
       </a>
     </div>
