@@ -17,15 +17,41 @@ class User extends Model
 	/**
 	 * 新增用户
 	 */
-	public function userAdd($openid = '',$name = '',$jwid = '',$jwpwd = '')
+	public function userAdd($openid = '',$name = '',$jwid = '',$jwpwd = '',$realname = '',$class = '')
 	{
-		$user['openid']  = isset($openid) ? $openid : session('openid');
-		$user['name']    = $name;
- 		$user['jwid']    = $jwid;
-		$user['jwpwd']   = $jwpwd;
-		$user['time']    = date("Y-m-d H:i:s");
-		$add = Db::name('user')->insert($user);
-		if($add){
+		$user['openid']      = isset($openid) ? $openid : session('openid');
+		$user['name']        = $name;
+		$user['realname']    = $realname;
+		$user['class']       = $class;
+ 		$user['jwid']        = $jwid;
+		$user['jwpwd']       = $jwpwd;
+		$user['time']        = date("Y-m-d H:i:s");
+		$check = Db::name('user')->where('openid',$openid)->find();
+		if(empty($check)){
+			$add = Db::name('user')->insert($user);
+			if($add){
+				return true;
+			}else{
+				return false;
+			}
+		}else{
+			$update = Db::name('user')->where('openid',$openid)->update($user);
+			if($update != 0){
+				return true;
+			}else{
+				return false;
+			}
+		}
+		
+	}
+
+	public static function message($message = '')
+	{
+		$data['openid'] = session('openid');
+		$data['content'] = $message;
+		$data['time'] = date("Y-m-d H:i:s");
+		$insert = Db::name('message')->insert($data);
+		if($insert){
 			return true;
 		}else{
 			return false;
