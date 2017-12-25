@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>给我留言</title>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+{include file='center/head' /}
+	</head>
+
+	<body>
+	<div style="margin-top: 30px;" class="weui-cells__title">亲爱的小伙伴：<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;感谢你一直对长大校园助手的支持，我们将一如既往的为你们提供各种优质查询服务。<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果你在使用长大校园助手plus时，有任何不满或我们平台不足的地方请在下方留言。或有什么想实现的功能也可以再下方留言哟，我们工程师讲评估后进行开发。
+
+	</div>
+	<div class="weui-cells weui-cells_form">
+	    <div class="weui-cell">
+	        <div class="weui-cell__bd">
+	            <textarea class="weui-textarea" id ="message" placeholder="请输入留言或建议" rows="4"></textarea>
+	            <div class="weui-textarea-counter"></div>
+	        </div>
+	    </div>
+	</div>
+	<div class="weui-btn-area">
+        <a class="weui-btn weui-btn_primary" href="javascript:" onclick="submitAdd();" id="submit">提交</a>
+    </div>
+	</body>
+	{include file='center/foot' /}
+	</html>
+	<script>
+		function submitAdd() {
+			var message = $("#message").val();
+			if(message == '' || message == null){
+				$.toast("说点什么吧", "cancel");
+				return false;
+			}
+			$.showLoading();
+			$.ajax({
+				type: 'post',
+				url: '{:url('message')}',
+				data: {
+					message:message
+				}, success: function (res) {
+					$.hideLoading();
+					if(res.status == 1){
+					   $.toast("提交成功");
+					   setTimeout(function(){
+							window.location.href='{:url('index')}';
+						}, 1000 );
+					}else{
+						$.toast("提交失败", "cancel");
+					}	
+					
+				}, error: function (res) {
+					$.hideLoading();
+					$.toast("网络故障", "forbidden");
+				   
+				}
+	        });
+		}
+	</script>

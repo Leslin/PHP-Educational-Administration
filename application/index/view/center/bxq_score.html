@@ -7,6 +7,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 
 {include file='center/head' /}
+<script>
+	$.showLoading();
+	$(document).ready(function() { 
+		$.hideLoading();
+	})
+</script>
 <style>
 	.weui-navbar__item {
 	    position: relative;
@@ -48,7 +54,10 @@
         </div>
         
     </div>
-	<div style="margin-top: 70px;" class="weui-cells__title">年度学期说明：<br/>2014-2015学年第一学期为2014/上学期，2014-2015学年第二学期为2014/下学期；依此类推。</div>
+	<div style="margin-top: 70px;" class="weui-cells__title">年度学期说明：<br/>2014-2015学年第一学期为2014/上学期，2014-2015学年第二学期为2014/下学期；依此类推。
+	<br/>
+	<span style="color: #4C4C4C">点击课程名称可查看该课程学分、类别等信息~~</span>
+	</div>
 	{volist name="score" id="vo" key="k"}
 	<!-- 列表组顶部说明文字 -->
 	<div class="weui-cells__title" style="color: #1AAD19;">{$vo.team}</div>

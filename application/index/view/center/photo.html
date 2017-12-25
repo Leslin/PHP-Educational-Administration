@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>我的登记照</title>
+    <title>查看登记照</title>
     <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
@@ -9,16 +9,43 @@
 {include file='center/head' /}
 <style>
 	img{
-
+	   width: 240px;
+	   height: 320px;
 	}
 </style>
 	</head>
 
 	<body>
 	<div style="text-align: center;margin-top: 60px;">
-		<img src="http://jwc2.yangtzeu.edu.cn:8080/photo/{php} echo substr($user['jwid'],0,4);{/php}/{$user.jwid}.JPG" alt="">
+		<img id="photo" src="http://jwc2.yangtzeu.edu.cn:8080/photo/{php} echo substr($user['jwid'],0,4);{/php}/{$user.jwid}.JPG" alt="">
 	</div>
-	
+	<div class="weui-btn-area">
+        <a class="weui-btn weui-btn_plain-primary" href="javascript:" onclick="submitAdd();" id="submit">换一张</a>
+    </div>
 	</body>
 	{include file='center/foot' /}
 	</html>
+	<script>
+		function submitAdd() {
+			$.showLoading();
+			$.ajax({
+				type: 'post',
+				url: '{:url('photo')}',
+				data: {
+				}, success: function (res) {
+					$.hideLoading();
+					if(res.status == 1){
+					   //$.toast("提交成功");
+					   $("#photo").attr('src',res.msg);
+					}else{
+						$.toast("获取失败，请重试", "cancel");
+					}	
+					
+				}, error: function (res) {
+					$.hideLoading();
+					$.toast("网络故障", "forbidden");
+				   
+				}
+	        });
+		}
+	</script>

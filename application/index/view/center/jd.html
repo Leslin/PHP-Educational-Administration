@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>必修课绩点</title>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+{include file='center/head' /}
+<style>
+	
+</style>
+	</head>
+
+	<body>
+	<div style="text-align: center;margin-top: 60px;">
+		<h2>必修课绩点：<span id="jd" style="color: #1AAD19">0.00</span></h2>
+	</div>
+	<div style="margin-top: 30px;" class="weui-cells__title">绩点说明（摘自百度百科）：<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;绩点的计算，是将学生修过的每一门课程（包括重修的课程）的课程绩点乘以该门课程的学分，累加后再除以总学分。 平均学分绩点可以作为学生学习能力与质量的综合评价指标之一。能方便地与美国的GPA制挂钩。想出国留学的中国本科生应该引以为重。<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;国内大部分高校通用的计算方法是：绩点=分数/10-5，学分绩点=学分×绩点=学分×（分数/10-5）
+	<br/><br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #4C4C4C">请不要问小编绩点怎么算出来的，因为我也不知道怎么算/(ㄒoㄒ)/~~
+	</div></span>
+	</body>
+	{include file='center/foot' /}
+	</html>
+	<script>
+		$.showLoading();
+		$(document).ready(function() { 
+			$.ajax({
+				type: 'post',
+				url: '{:url('jd')}',
+				data: {
+
+				}, success: function (res) {
+					$.hideLoading();
+					if(res.status == 1){
+					   //$.toast("更新成功");
+					   $('#jd').text(res.msg);
+					}else{
+						$.toast("更新失败", "cancel");
+					}	
+					
+				}, error: function (res) {
+					$.hideLoading();
+					$.toast("网络故障", "forbidden");
+				   
+				}
+	        });
+		});
+	</script>

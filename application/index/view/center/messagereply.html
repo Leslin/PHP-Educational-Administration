@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>给我留言</title>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+{include file='center/head' /}
+	</head>
+
+	<body>
+	<!-- 文字列表附来源 -->
+	<div class="weui-panel">
+	    <!-- head 部分 -->
+	    <div class="weui-panel__hd">提问列表</div>
+	    <!-- body 部分 -->
+	    {volist name="list" id="vo" key="k"}
+	    <div class="weui-panel__bd">
+	        <!-- 一个列表条目 -->
+	        <div href="#" class="weui-media-box weui-media-box_text">
+	            <h4 class="weui-media-box__title">{$vo.id}#</h4>
+	            <p class="weui-media-box__desc">{$vo.content}</p>
+	            <ul class="weui-media-box__info">
+	                <li class="weui-media-box__info__meta">{$vo.time}</li>
+	            </ul>
+	        </div>
+	    </div>
+	    {/volist}
+	</div>
+	<div class="weui-cells weui-cells_form">
+	    <div class="weui-cell">
+	        <div class="weui-cell__bd">
+	            <textarea class="weui-textarea" id ="message" placeholder="回复给他" rows="4"></textarea>
+	            <div class="weui-textarea-counter"></div>
+	        </div>
+	    </div>
+	</div>
+	<div class="weui-btn-area">
+        <a class="weui-btn weui-btn_primary" href="javascript:" onclick="submitAdd();" id="submit">回复给他</a>
+    </div>
+	</body>
+	{include file='center/foot' /}
+	</html>
+	<script>
+		function submitAdd() {
+			var message = $("#message").val();
+			if(message == '' || message == null){
+				$.toast("说点什么吧", "cancel");
+				return false;
+			}
+			$.showLoading();
+			$.ajax({
+				type: 'post',
+				url: '{:url('messagereply')}',
+				data: {
+					message:message,
+					openid:'{$userinfo['openid']}'
+				}, success: function (res) {
+					$.hideLoading();
+					if(res.status == 1){
+					   $.toast("提交成功");
+					   setTimeout(function(){
+							window.location.href='{:url('index')}';
+						}, 1000 );
+					}else{
+						$.toast("提交失败", "cancel");
+					}	
+					
+				}, error: function (res) {
+					$.hideLoading();
+					$.toast("网络故障", "forbidden");
+				   
+				}
+	        });
+		}
+	</script>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>个人信息</title>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+{include file='center/head' /}
+	</head>
+
+	<body>
+	<div style="margin-top: 30px;" class="weui-cells__title">个人信息说明：<br/>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;该信息来源用户输入信息，如有误，请以最终教务信息为准。<br/>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;点击下面解绑后，存储本平台信息将删除，解绑后可以再次绑定其他学号。
+	</div>
+	<!-- 列表组顶部说明文字 -->
+	<div class="weui-cells__title" style="color: #1AAD19;">个人信息</div>
+	<!-- 带说明的列表 -->
+	<div class="weui-cells">
+	    <div class="weui-cell">
+	        <div class="weui-cell__bd">
+	            <p>姓名</p>
+	        </div>
+	        <div class="weui-cell__ft">{$user.realname}</div>
+	    </div>
+	    <div class="weui-cell">
+	        <div class="weui-cell__bd">
+	            <p>学号</p>
+	        </div>
+	        <div class="weui-cell__ft">{$user.jwid}</div>
+	    </div>
+	    <div class="weui-cell">
+	        <div class="weui-cell__bd">
+	            <p>班级</p>
+	        </div>
+	        <div class="weui-cell__ft">{$user.class}</div>
+	    </div>
+	</div>
+	<div class="weui-btn-area">
+        <a class="weui-btn weui-btn_warn" href="javascript:" onclick="submitAdd();" id="submit">解绑</a>
+    </div>
+	</body>
+	{include file='center/foot' /}
+	</html>
+	<script src="http://res.wx.qq.com/open/js/jweixin-1.2.0.js"></script>
+	<script>
+		wx.config({
+	      debug:false,
+	      appId: "{$getSignPackage['appId']}",
+	      timestamp: "{$getSignPackage['timestamp']}",
+	      nonceStr: "{$getSignPackage['nonceStr']}",
+	      signature: "{$getSignPackage['signature']}",
+	      jsApiList: [
+	      
+	        'closeWindow',
+	        'onMenuShareTimeline',
+	        'onMenuShareAppMessage'
+	      ]
+	    });
+	    wx.ready(function() {
+
+	    });
+
+	    function closeWindow() {
+	       wx.closeWindow();
+	    }
+
+	    wx.error(function(res) {
+	        alert(res.errMsg);
+	    });
+		function submitAdd() {
+			$.confirm("解绑后登陆个人中心可以重新绑定", "确认解绑", function() {
+			    $.showLoading();
+				$.ajax({
+					type: 'post',
+					url: '{:url('user')}',
+					data: {
+
+					}, success: function (res) {
+						$.hideLoading();
+						if(res.status == 1){
+						   $.toast(res.msg);
+						   setTimeout(function(){
+								closeWindow();
+							}, 1000 );	
+						}else{
+							$.toast(res.msg, "cancel");
+						}	
+						
+					}, error: function (res) {
+						$.hideLoading();
+						$.toast("网络故障", "forbidden");
+					   
+					}
+		        });
+			}, function() {
+			  //点击取消后的回调函数
+			  });
+		}
+	</script>

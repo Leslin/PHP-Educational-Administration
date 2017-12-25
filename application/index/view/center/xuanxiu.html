@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>学生选课信息</title>
+    <meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+
+{include file='center/head' /}
+<script>
+	$.showLoading();
+	$(document).ready(function() { 
+		$.hideLoading();
+	})
+</script>
+<style>
+	.weui-navbar__item {
+	    position: relative;
+	    display: block;
+	    -webkit-box-flex: 1;
+	    -webkit-flex: 1;
+	    flex: 1;
+	    padding: 5px 0;
+	    text-align: center;
+	    font-size: 14px;
+	    -webkit-tap-highlight-color: rgba(0,0,0,0);
+	}
+	.weui-navbar__item.weui-bar__item_on {
+	    background-color: #1AAD19;
+	}
+	.weui-navbar__item {
+	    color: #ffffff;
+	}
+	.weui-cells {
+	    margin-top: 1.17647059em;
+	    background-color: #fff;
+	    line-height: 1.47058824;
+	    font-size: 14px;
+	    overflow: hidden;
+	    position: relative;
+	}
+	.weui-dialog__bd{
+		text-align: -webkit-left;
+	}
+</style>
+	</head>
+<body ontouchstart>
+	<div class="weui-navbar" style="margin-top: 20px;margin-left: 20%;width: 60%;">
+        <div class="weui-navbar__item weui-bar__item_on">
+            我的选修
+        </div>
+        <div class="weui-navbar__item" id="clear" style="color: #000000">
+            刷新选修信息
+        </div>
+        
+    </div>
+    <div style="margin-top: 70px;" class="weui-cells__title">说明：<br/>列表中为毕业要求最低学分，以及已获得学分，由于网络原因，可能会有延迟。<br/>
+    	<span style="color: #4C4C4C">以下数据仅供参考，请最终以教务处为准！</span>
+    </div>
+
+	<div class="weui-cells__title" style="color: #1AAD19;">最低毕业学分要求</div>
+	
+	<div class="weui-cells">
+		<a href="javascript:;"  class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>公选</p>
+	        </div>
+	        <div class="weui-cell__ft">{$info['xf'][0]}</div>
+	    </a>
+	    <a href="javascript:;"  class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>专业选修</p>
+	        </div>
+	        <div class="weui-cell__ft">{$info['xf'][1]}</div>
+	    </a>
+	</div>
+	<div class="weui-cells__title" style="color: #1AAD19;">我的选修学分</div>
+	<div class="weui-cells">
+	    <a href="javascript:;"  class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>已选公选课通过学分</p>
+	        </div>
+	        <div class="weui-cell__ft">{$info['xf'][2]}</div>
+	    </a>
+		<a href="javascript:;"  class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>已选公选课未通过学分</p>
+	        </div>
+	        <div class="weui-cell__ft">{$info['xf'][3]}</div>
+	    </a>
+		<a href="javascript:;"  class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>公选可选学分</p>
+	        </div>
+	        <div class="weui-cell__ft">{$info['xf'][4]}</div>
+	    </a>
+		<a href="javascript:;"  class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>本学期公选已选门次</p>
+	        </div>
+	        <div class="weui-cell__ft">{$info['xf'][5]}</div>
+	    </a>
+		<a href="javascript:;"  class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>本学期公选允许最大门次</p>
+	        </div>
+	        <div class="weui-cell__ft">{$info['xf'][6]}</div>
+	    </a>
+		<a href="javascript:;"  class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>已选专业选修课通过学分</p>
+	        </div>
+	        <div class="weui-cell__ft">{$info['xf'][7]}</div>
+	    </a>
+		<a href="javascript:;"  class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>已选专业选修课未通过学分</p>
+	        </div>
+	        <div class="weui-cell__ft">{$info['xf'][8]}</div>
+	    </a>
+		<a href="javascript:;"  class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>专业选修可选学分</p>
+	        </div>
+	        <div class="weui-cell__ft">{$info['xf'][9]}</div>
+	    </a>
+	</div>
+	<div class="weui-cells__title" style="color: #1AAD19;">本学期已选修课程（{php}echo count($info['class']){/php}门）</div>
+	{volist name="$info['class']" id="vo" key="k"}
+	<!-- 带说明的列表 -->
+	<div class="weui-cells">
+		<a href="javascript:;" class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>课程名称</p>
+	        </div>
+	        <div class="weui-cell__ft">{$vo[1]}</div>
+	    </a>
+	    <a href="javascript:;" class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>学分</p>
+	        </div>
+	        <div class="weui-cell__ft">{$vo[2]}</div>
+	    </a>
+	    <a href="javascript:;" class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p style="width: 70px;">上课地点</p>
+	        </div>
+	        <div class="weui-cell__ft">{$vo[3]}</div>
+	    </a>
+	    <a href="javascript:;" class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>教师1	</p>
+	        </div>
+	        <div class="weui-cell__ft">{$vo[4]}</div>
+	    </a>
+	    <a href="javascript:;" class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>班级</p>
+	        </div>
+	        <div class="weui-cell__ft">{$vo[5]}</div>
+	    </a>
+	    <a href="javascript:;" class="weui-cell weui-cell_access">
+	        <div class="weui-cell__bd">
+	            <p>类别</p>
+	        </div>
+	        <div class="weui-cell__ft">{$vo[6]}</div>
+	    </a>
+	</div>
+	{/volist}
+
+</body>
+{include file='center/foot' /}
+<script>
+	$("#clear").click(function(){
+		$.showLoading();
+		$.ajax({
+			type: 'post',
+			url: '{:url('Clear/clear')}',
+			data: {
+
+			}, success: function (res) {
+				$.hideLoading();
+				if(res.status == 1){
+				   $.toast("更新成功");
+				   location.reload();
+				}else{
+					$.toast("更新失败", "cancel");
+				}	
+				
+			}, error: function (res) {
+				$.hideLoading();
+				$.toast("网络故障", "forbidden");
+			   
+			}
+        });
+	})
+</script>
+</html>
