@@ -147,4 +147,9 @@ class Center extends Base
 		}
 		return $temp;
 	}
+
+	public function money()
+	{
+		return view();
+	}
 }
