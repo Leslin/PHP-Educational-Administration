@@ -97,7 +97,8 @@ www  WEB部署目录（或者子目录）
 
 ### **代码解读**
 请自行看代码，框架使用的是ThinkPHP5.0，这里就不解读了，代码都有注释，看不懂的请加群吧。
-交流QQ群：684555720
+
+- 交流QQ群：684555720
 
 ### **微信发红包**
 为了回馈粉丝，做了一个查成绩发红包的功能，具体功能请查看Red.php这个文件，红包控制在Server.php中。
@@ -106,10 +107,14 @@ www  WEB部署目录（或者子目录）
 新增四六级准考证号绑定功能。
 
 ### **个人中心**
-新增个人中心功能，集成所有功能到个人中心。
+
+- 新增个人中心功能，集成所有功能到个人中心。
+![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/6.png)
 
 ### **增加个人中心成绩查询**
-个人中心成绩查询
+
+- 个人中心成绩查询
+![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/7.png)
 
 ### **增加个人中心绩点查询**
 增加个人中心绩点查询
