@@ -124,7 +124,28 @@ www  WEB部署目录（或者子目录）
 ### **增加留言功能**
 
 - 用户留言功能
-![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/4.png)
+![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/19.png)
 
 ### **增加留言回复功能**
-用户留言回复功能
+
+- 用户留言回复功能
+![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/19.png)
+
+### **增加表白墙功能**
+
+- 用户留言回复功能
+![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/9.png)
+
+### **增加打赏功能**
+
+- 用户留言回复功能
+![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/10.png)
+
+### **增加留言回复功能**
+
+- 用户留言回复功能
+![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/19.png)
+
+
+
+
