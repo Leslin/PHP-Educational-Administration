@@ -117,10 +117,14 @@ www  WEB部署目录（或者子目录）
 ![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/7.png)
 
 ### **增加个人中心绩点查询**
-增加个人中心绩点查询
+
+-增加个人中心绩点查询
+![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/12.png)
 
 ### **增加留言功能**
-用户留言功能
+
+- 用户留言功能
+![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/4.png)
 
 ### **增加留言回复功能**
 用户留言回复功能
