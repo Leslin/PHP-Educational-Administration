@@ -116,6 +116,11 @@ www  WEB部署目录（或者子目录）
 - 个人中心成绩查询
 ![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/7.png)
 
+### **增加全部成绩查询功能**
+
+- 用户查询全部成绩功能
+![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/12.png)
+
 ### **增加个人中心绩点查询**
 
 -增加个人中心绩点查询
@@ -133,19 +138,13 @@ www  WEB部署目录（或者子目录）
 
 ### **增加表白墙功能**
 
-- 用户留言回复功能
+- 用户表白墙功能
 ![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/9.png)
 
 ### **增加打赏功能**
 
-- 用户留言回复功能
+- 用户打赏功能
 ![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/10.png)
-
-### **增加留言回复功能**
-
-- 用户留言回复功能
-![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/19.png)
-
 
 
 
