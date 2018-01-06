@@ -24,7 +24,7 @@ class User extends Model
 		$user['realname']    = $realname;
 		$user['class']       = $class;
  		$user['jwid']        = $jwid;
-		$user['jwpwd']       = $jwpwd;
+		$user['jwpwd']       = md5($jwpwd.time());
 		$user['time']        = date("Y-m-d H:i:s");
 		$check = Db::name('user')->where('openid',$openid)->find();
 		if(empty($check)){
