@@ -255,7 +255,7 @@ return [
         'mch_id'          => '', //商户号
         'key'             => '', //支付key
         'cert_path'       => '/apiclient_cert.pem',//证书地址
-        'key_path'        => '/www/wwwroot/cert/apiclient_key.pem',
+        'key_path'        => '/apiclient_key.pem',
         'root_path'       => '/www/wwwroot/cert/rootca.pem',
         'sendname'        => '长大校园助手plus',    //红包发送方
         'wishing'         => '祝福的话',       //红包祝福的话语
