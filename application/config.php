@@ -256,7 +256,7 @@ return [
         'key'             => '', //支付key
         'cert_path'       => '/apiclient_cert.pem',//证书地址
         'key_path'        => '/apiclient_key.pem',
-        'root_path'       => '/www/wwwroot/cert/rootca.pem',
+        'root_path'       => '/rootca.pem',
         'sendname'        => '长大校园助手plus',    //红包发送方
         'wishing'         => '祝福的话',       //红包祝福的话语
         'actname'         => '活动名称',       //活动名称
