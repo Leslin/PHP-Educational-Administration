@@ -76,6 +76,7 @@ www  WEB部署目录（或者子目录）
 - 微信查成绩
 - 查成绩发红包
 - 发送卡券等
+- 教务处已经更新，代码也更新了，稍后上传
 
 ### **效果图如下**
 ![](https://github.com/Leslin/PHP-Educational-Administration/blob/master/screenshot/11.png)
